@@ -22,16 +22,47 @@ app.get('/image', async (req, res) => {
     // Check if color mode option is specified in query parameters
     const colorMode = req.query.colorMode;
     if (colorMode) {
-      // Change image color mode if option is specified
       switch (colorMode.toLowerCase()) {
         case 'grayscale':
-          image.grayscale();
+          image.greyscale();
           break;
         case 'sepia':
           image.sepia();
           break;
+        case 'invert':
+          image.invert();
+          break;
+        case 'normalize':
+          image.normalize();
+          break;
+        case 'posterize':
+          image.posterize(5); // Levels can be adjusted as needed
+          break;
+        case 'contrast':
+          image.contrast(0.5); // Value can be adjusted as needed
+          break;
+        case 'brightness':
+          image.brightness(0.5); // Value can be adjusted as needed
+          break;
+        case 'color':
+          image.color([{ apply: 'mix', params: ['#ff0000', 0.5] }]); // Color and amount can be adjusted as needed
+          break;
+        case 'hue':
+          image.color([{ apply: 'hue', params: [180] }]); // Degrees can be adjusted as needed
+          break;
+        case 'saturate':
+          image.color([{ apply: 'saturate', params: [0.5] }]); // Value can be adjusted as needed
+          break;
+        case 'desaturate':
+          image.color([{ apply: 'desaturate', params: [0.5] }]); // Value can be adjusted as needed
+          break;
+        case 'fade':
+          image.fade(0.5); // Fade percentage can be adjusted as needed
+          break;
+        case 'opacity':
+          image.opacity(0.5); // Value can be adjusted as needed
+          break;
         default:
-          // Invalid color mode option
           return res.status(400).send('Invalid color mode option');
       }
     }
@@ -50,3 +81,4 @@ app.get('/image', async (req, res) => {
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });
+  
