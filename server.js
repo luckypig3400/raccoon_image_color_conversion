@@ -11,7 +11,7 @@ app.use(express.urlencoded({ extended: true }));
 app.get('/image', async (req, res) => {
   try {
     // Retrieve image from API URL
-    const response = await axios.get('https://example.com/image.jpg', {
+    const response = await axios.get('http://tws-raccoon.luckypig.net:8081/api/dicom/wado/?requestType=WADO&studyUID=1.3.6.1.4.1.5962.99.1.2786334768.1849416866.1385765836848.3.0&seriesUID=1.3.6.1.4.1.5962.99.1.2786334768.1849416866.1385765836848.669.0&objectUID=1.3.6.1.4.1.5962.99.1.2786334768.1849416866.1385765836848.668.0&contentType=image/jpeg', {
       responseType: 'arraybuffer'
     });
     const imageBuffer = Buffer.from(response.data, 'binary');
